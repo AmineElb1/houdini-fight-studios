@@ -148,6 +148,18 @@ const Booking = () => {
             SUBMIT BOOKING REQUEST
           </button>
         </form>
+
+        {/* Calendly Embed */}
+        <div className={`mt-20 ${visible ? "animate-fade-up-delay-1" : "opacity-0"}`}>
+          <div className="text-center mb-8">
+            <p className="text-muted-foreground font-body text-lg">Or schedule directly via Calendly</p>
+          </div>
+          <div
+            className="calendly-inline-widget rounded overflow-hidden border border-border"
+            data-url="https://calendly.com/houdini-fightmedia?hide_gdpr_banner=1&background_color=0d0d0d&text_color=ffffff&primary_color=e10600"
+            style={{ minWidth: "320px", height: "700px" }}
+          />
+        </div>
       </div>
     </section>
   );
