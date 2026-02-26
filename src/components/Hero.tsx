@@ -17,7 +17,7 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <h1 className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-foreground leading-none animate-fade-up">
-          CAPTURING WARRIORS.
+          Houdini Fightmedia
           <br />
           <span className="text-gradient-red">CREATING LEGACY.</span>
         </h1>
