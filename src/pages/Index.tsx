@@ -2,8 +2,9 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Portfolio from "@/components/Portfolio";
 import Services from "@/components/Services";
-import Booking from "@/components/Booking";
 import About from "@/components/About";
+import Booking from "@/components/Booking";
+import CalendlySection from "@/components/CalendlySection";
 import Contact from "@/components/Contact";
 import StickyBookButton from "@/components/StickyBookButton";
 
@@ -16,6 +17,7 @@ const Index = () => {
       <Services />
       <About />
       <Booking />
+      <CalendlySection />
       <Contact />
       <StickyBookButton />
     </div>
