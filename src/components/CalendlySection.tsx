@@ -22,10 +22,11 @@ const CalendlySection = () => {
         </div>
 
         <div className={`${visible ? "animate-fade-up-delay-1" : "opacity-0"}`}>
-          <div
-            className="calendly-inline-widget rounded overflow-hidden border border-border"
-            data-url="https://calendly.com/houdini-fightmedia?hide_gdpr_banner=1&background_color=0d0d0d&text_color=ffffff&primary_color=e10600"
-            style={{ minWidth: "320px", height: "700px" }}
+          <iframe
+            src="https://calendly.com/houdini-fightmedia?hide_gdpr_banner=1&background_color=0d0d0d&text_color=ffffff&primary_color=e10600"
+            className="w-full rounded overflow-hidden border border-border"
+            style={{ minWidth: "320px", height: "700px", border: "none" }}
+            title="Schedule a shoot with Houdini Fightmedia"
           />
         </div>
       </div>
