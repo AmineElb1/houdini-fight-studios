@@ -1,25 +1,71 @@
-import { useState, useEffect, useRef } from "react";
-import portfolio1 from "@/assets/portfolio-1.jpg";
-import portfolio2 from "@/assets/portfolio-2.jpg";
-import portfolio3 from "@/assets/portfolio-3.jpg";
-import portfolio4 from "@/assets/portfolio-4.jpg";
-import portfolio5 from "@/assets/portfolio-5.jpg";
-import portfolio6 from "@/assets/portfolio-6.jpg";
+import { useState, useRef, useEffect } from "react";
 
 const portfolioItems = [
-  { src: portfolio1, title: "MMA Cage Fight", category: "Events" },
-  { src: portfolio2, title: "Kickboxing Highlight", category: "Highlights" },
-  { src: portfolio3, title: "Fighter Portrait", category: "Promo" },
-  { src: portfolio4, title: "Corner Moment", category: "Events" },
-  { src: portfolio5, title: "Victory Celebration", category: "Highlights" },
-  { src: portfolio6, title: "Arena Atmosphere", category: "Events" },
+  {
+    videoId: "rOb1Sxt-GN0",
+    title: "Fight Highlights",
+  },
+  {
+    videoId: "0WdndO3WxOs",
+    title: "Fighter Entrance",
+  },
+  {
+    videoId: "HVQI0eQITOU",
+    title: "Corner Moment",
+  },
+  {
+    videoId: "kqeeEdjAH6g",
+    title: "Victory Celebration",
+  },
+  {
+    videoId: "XNs4DRjebY4",
+    title: "Training Highlights",
+  },
 ];
 
-const categories = ["All", "Events", "Promo", "Highlights"];
+const VideoCard = ({ videoId, title }: { videoId: string; title: string }) => {
+  const [hovered, setHovered] = useState(false);
+
+  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&playsinline=1&rel=0&showinfo=0&modestbranding=1`;
+
+  return (
+    <div
+      className="group relative aspect-[9/16] overflow-hidden bg-card border border-border cursor-pointer"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {hovered ? (
+        <iframe
+          src={embedUrl}
+          className="absolute inset-0 w-full h-full"
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+          title={title}
+          style={{ border: 0 }}
+        />
+      ) : (
+        <img
+          src={thumbnailUrl}
+          alt={title}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+      )}
+
+      {/* Title overlay — visible by default, hidden on hover */}
+      <div
+        className={`absolute inset-0 bg-background/60 flex items-end p-6 transition-opacity duration-300 ${
+          hovered ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+      >
+        <p className="font-display text-2xl text-foreground">{title}</p>
+      </div>
+    </div>
+  );
+};
 
 const Portfolio = () => {
-  const [filter, setFilter] = useState("All");
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
@@ -32,8 +78,6 @@ const Portfolio = () => {
     return () => observer.disconnect();
   }, []);
 
-  const filtered = filter === "All" ? portfolioItems : portfolioItems.filter(i => i.category === filter);
-
   return (
     <section id="portfolio" ref={ref} className="py-24 px-6 bg-section-fade">
       <div className="max-w-7xl mx-auto">
@@ -42,44 +86,14 @@ const Portfolio = () => {
           <p className="mt-4 text-muted-foreground font-body">Fight media that hits different</p>
         </div>
 
-        {/* Filters */}
-        <div className={`flex justify-center gap-4 mb-12 ${visible ? "animate-fade-up-delay-1" : "opacity-0"}`}>
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setFilter(cat)}
-              className={`px-5 py-2 text-sm font-body tracking-wide transition-all ${
-                filter === cat
-                  ? "bg-primary text-primary-foreground"
-                  : "border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((item, i) => (
-            <button
-              key={item.title + i}
-              onClick={() => setSelectedImage(item.src)}
-              className={`group relative aspect-square overflow-hidden ${visible ? `animate-fade-up-delay-${Math.min(i, 3)}` : "opacity-0"}`}
+          {portfolioItems.map((item, i) => (
+            <div
+              key={item.videoId}
+              className={visible ? `animate-fade-up-delay-${Math.min(i, 3)}` : "opacity-0"}
             >
-              <img
-                src={item.src}
-                alt={item.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-background/0 group-hover:bg-background/60 transition-all duration-300 flex items-end p-6">
-                <div className="translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                  <p className="font-display text-xl text-foreground">{item.title}</p>
-                  <p className="text-sm text-primary font-body">{item.category}</p>
-                </div>
-              </div>
-            </button>
+              <VideoCard videoId={item.videoId} title={item.title} />
+            </div>
           ))}
         </div>
 
@@ -95,26 +109,6 @@ const Portfolio = () => {
           </a>
         </div>
       </div>
-
-      {/* Modal */}
-      {selectedImage && (
-        <div
-          className="fixed inset-0 z-50 bg-background/90 backdrop-blur-sm flex items-center justify-center p-6"
-          onClick={() => setSelectedImage(null)}
-        >
-          <img
-            src={selectedImage}
-            alt="Portfolio preview"
-            className="max-w-full max-h-[85vh] object-contain animate-fade-up"
-          />
-          <button
-            className="absolute top-6 right-6 text-foreground text-3xl hover:text-primary transition-colors"
-            onClick={() => setSelectedImage(null)}
-          >
-            ×
-          </button>
-        </div>
-      )}
     </section>
   );
 };
