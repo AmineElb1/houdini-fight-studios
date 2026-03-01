@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react";
 import logo from "@/assets/logo.png";
-
-const navLinks = [
-  { label: "Work", href: "#portfolio" },
-  { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
-];
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const Navbar = () => {
+  const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = [
+    { label: t.nav.work, href: "#portfolio" },
+    { label: t.nav.services, href: "#services" },
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.contact, href: "#contact" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -36,18 +39,19 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
-              key={link.label}
+              key={link.href}
               href={link.href}
               className="font-body text-sm tracking-wide text-muted-foreground hover:text-foreground transition-colors"
             >
               {link.label}
             </a>
           ))}
+          <LanguageSwitcher />
           <a
             href="#booking"
             className="bg-primary text-primary-foreground px-5 py-2 text-sm font-semibold tracking-wide hover:bg-primary/90 transition-colors"
           >
-            BOOK A SHOOT
+            {t.nav.bookAShoot}
           </a>
         </div>
 
@@ -72,7 +76,7 @@ const Navbar = () => {
         <div className="md:hidden bg-background/98 backdrop-blur-md border-b border-border px-6 pb-6 animate-fade-up">
           {navLinks.map((link) => (
             <a
-              key={link.label}
+              key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
               className="block py-3 font-body text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -80,12 +84,15 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
+          <div className="py-3">
+            <LanguageSwitcher />
+          </div>
           <a
             href="#booking"
             onClick={() => setMenuOpen(false)}
             className="block mt-3 bg-primary text-primary-foreground text-center px-5 py-3 text-sm font-semibold tracking-wide"
           >
-            BOOK A SHOOT
+            {t.nav.bookAShoot}
           </a>
         </div>
       )}

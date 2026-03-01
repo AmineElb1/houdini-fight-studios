@@ -7,20 +7,23 @@ import Booking from "@/components/Booking";
 import CalendlySection from "@/components/CalendlySection";
 import Contact from "@/components/Contact";
 import StickyBookButton from "@/components/StickyBookButton";
+import { LanguageProvider } from "@/i18n/LanguageContext";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <Hero />
-      <Portfolio />
-      <Services />
-      <About />
-      <Booking />
-      <CalendlySection />
-      <Contact />
-      <StickyBookButton />
-    </div>
+    <LanguageProvider>
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <Hero />
+        <Portfolio />
+        <Services />
+        <About />
+        <Booking />
+        <CalendlySection />
+        <Contact />
+        <StickyBookButton />
+      </div>
+    </LanguageProvider>
   );
 };
 
