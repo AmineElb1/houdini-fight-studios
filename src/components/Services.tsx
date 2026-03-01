@@ -1,42 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import { Camera, Film, Scissors, Video, Share2 } from "lucide-react";
-
-const services = [
-  {
-    icon: Camera,
-    title: "EVENT COVERAGE",
-    description: "Full cinematic coverage of Muay Thai, Kickboxing, and MMA events. Multi-camera setups with professional editing.",
-  },
-  {
-    icon: Video,
-    title: "GYM PROMO VIDEOS",
-    description: "Showcase your gym's energy, fighters, and training culture with high-impact promotional content.",
-  },
-  {
-    icon: Scissors,
-    title: "FIGHTER HIGHLIGHT REELS",
-    description: "Powerful highlight compilations that capture a fighter's best moments, knockouts, and victories.",
-  },
-  {
-    icon: Film,
-    title: "AFTERMOVIES",
-    description: "Cinematic aftermovies that relive the atmosphere, intensity, and emotion of fight events.",
-  },
-  {
-    icon: Share2,
-    title: "SOCIAL MEDIA PACKAGES",
-    description: "Short-form content optimized for Instagram, TikTok, and YouTube to grow your fight brand.",
-  },
-  {
-    icon: Video,
-    title: "DRONE / AERIAL FOOTAGE",
-    description: "Cinematic aerial and drone videography for events, venues, and promotional content that stands out.",
-  },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const Services = () => {
+  const { t } = useLanguage();
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement>(null);
+
+  const services = [
+    { icon: Camera, title: t.services.eventCoverage, description: t.services.eventCoverageDesc },
+    { icon: Video, title: t.services.gymPromo, description: t.services.gymPromoDesc },
+    { icon: Scissors, title: t.services.highlights, description: t.services.highlightsDesc },
+    { icon: Film, title: t.services.aftermovies, description: t.services.aftermoviesDesc },
+    { icon: Share2, title: t.services.social, description: t.services.socialDesc },
+    { icon: Video, title: t.services.drone, description: t.services.droneDesc },
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -51,14 +29,14 @@ const Services = () => {
     <section id="services" ref={ref} className="py-24 px-6">
       <div className="max-w-7xl mx-auto">
         <div className={`text-center mb-16 ${visible ? "animate-fade-up" : "opacity-0"}`}>
-          <h2 className="font-display text-5xl sm:text-6xl text-foreground">SERVICES</h2>
-          <p className="mt-4 text-muted-foreground font-body">What we bring to the fight</p>
+          <h2 className="font-display text-5xl sm:text-6xl text-foreground">{t.services.title}</h2>
+          <p className="mt-4 text-muted-foreground font-body">{t.services.subtitle}</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, i) => (
             <div
-              key={service.title}
+              key={i}
               className={`group bg-card border border-border p-8 card-glow hover:card-glow-hover transition-all duration-300 ${
                 visible ? `animate-fade-up-delay-${Math.min(i, 3)}` : "opacity-0"
               }`}

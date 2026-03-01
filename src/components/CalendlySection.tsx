@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const CalendlySection = () => {
+  const { t } = useLanguage();
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
@@ -17,8 +19,8 @@ const CalendlySection = () => {
     <section id="booking" ref={ref} className="py-24 px-6">
       <div className="max-w-3xl mx-auto">
         <div className={`text-center mb-12 ${visible ? "animate-fade-up" : "opacity-0"}`}>
-          <h2 className="font-display text-5xl sm:text-6xl text-foreground">BOOK A SHOOT</h2>
-          <p className="mt-4 text-muted-foreground font-body">Schedule your session directly</p>
+          <h2 className="font-display text-5xl sm:text-6xl text-foreground">{t.calendly.title}</h2>
+          <p className="mt-4 text-muted-foreground font-body">{t.calendly.subtitle}</p>
         </div>
 
         <div className={`${visible ? "animate-fade-up-delay-1" : "opacity-0"}`}>
