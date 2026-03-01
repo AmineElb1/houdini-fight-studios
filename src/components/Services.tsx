@@ -27,6 +27,11 @@ const services = [
     title: "SOCIAL MEDIA PACKAGES",
     description: "Short-form content optimized for Instagram, TikTok, and YouTube to grow your fight brand.",
   },
+  {
+    icon: Video,
+    title: "DRONE / AERIAL FOOTAGE",
+    description: "Cinematic aerial and drone videography for events, venues, and promotional content that stands out.",
+  },
 ];
 
 const Services = () => {

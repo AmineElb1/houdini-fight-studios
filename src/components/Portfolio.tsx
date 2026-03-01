@@ -1,69 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-
-const portfolioItems = [
-  {
-    videoId: "rOb1Sxt-GN0",
-    title: "Fight Highlights",
-  },
-  {
-    videoId: "0WdndO3WxOs",
-    title: "Fighter Entrance",
-  },
-  {
-    videoId: "HVQI0eQITOU",
-    title: "Corner Moment",
-  },
-  {
-    videoId: "kqeeEdjAH6g",
-    title: "Victory Celebration",
-  },
-  {
-    videoId: "XNs4DRjebY4",
-    title: "Training Highlights",
-  },
-];
-
-const VideoCard = ({ videoId, title }: { videoId: string; title: string }) => {
-  const [hovered, setHovered] = useState(false);
-
-  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&playsinline=1&rel=0&showinfo=0&modestbranding=1`;
-
-  return (
-    <div
-      className="group relative aspect-[9/16] overflow-hidden bg-card border border-border cursor-pointer"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {hovered ? (
-        <iframe
-          src={embedUrl}
-          className="absolute inset-0 w-full h-full"
-          allow="autoplay; encrypted-media"
-          allowFullScreen
-          title={title}
-          style={{ border: 0 }}
-        />
-      ) : (
-        <img
-          src={thumbnailUrl}
-          alt={title}
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
-      )}
-
-      {/* Title overlay — visible by default, hidden on hover */}
-      <div
-        className={`absolute inset-0 bg-background/60 flex items-end p-6 transition-opacity duration-300 ${
-          hovered ? "opacity-0 pointer-events-none" : "opacity-100"
-        }`}
-      >
-        <p className="font-display text-2xl text-foreground">{title}</p>
-      </div>
-    </div>
-  );
-};
+import { Instagram } from "lucide-react";
 
 const Portfolio = () => {
   const [visible, setVisible] = useState(false);
@@ -78,6 +14,24 @@ const Portfolio = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (visible) {
+      // Load Instagram embed script
+      const script = document.createElement("script");
+      script.src = "https://www.instagram.com/embed.js";
+      script.async = true;
+      document.body.appendChild(script);
+      script.onload = () => {
+        if ((window as any).instgrm) {
+          (window as any).instgrm.Embeds.process();
+        }
+      };
+      return () => {
+        document.body.removeChild(script);
+      };
+    }
+  }, [visible]);
+
   return (
     <section id="portfolio" ref={ref} className="py-24 px-6 bg-section-fade">
       <div className="max-w-7xl mx-auto">
@@ -86,26 +40,35 @@ const Portfolio = () => {
           <p className="mt-4 text-muted-foreground font-body">Fight media that hits different</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {portfolioItems.map((item, i) => (
-            <div
-              key={item.videoId}
-              className={visible ? `animate-fade-up-delay-${Math.min(i, 3)}` : "opacity-0"}
-            >
-              <VideoCard videoId={item.videoId} title={item.title} />
-            </div>
-          ))}
-        </div>
+        <div className={`flex flex-col items-center gap-8 ${visible ? "animate-fade-up-delay-1" : "opacity-0"}`}>
+          {/* Instagram Embed Feed */}
+          <div className="w-full max-w-2xl">
+            <blockquote
+              className="instagram-media"
+              data-instgrm-permalink="https://www.instagram.com/houdini.fightmedia/"
+              data-instgrm-version="14"
+              style={{
+                background: "hsl(0 0% 8%)",
+                border: "1px solid hsl(0 0% 16%)",
+                borderRadius: "4px",
+                margin: "0 auto",
+                maxWidth: "540px",
+                width: "100%",
+                minWidth: "326px",
+                padding: 0,
+              }}
+            />
+          </div>
 
-        {/* Instagram CTA */}
-        <div className="text-center mt-12">
+          {/* CTA */}
           <a
             href="https://www.instagram.com/houdini.fightmedia/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground font-body text-sm transition-colors"
+            className="inline-flex items-center gap-3 bg-primary text-primary-foreground font-display text-xl px-8 py-4 hover:opacity-90 transition-opacity"
           >
-            Follow us on Instagram →
+            <Instagram className="w-6 h-6" />
+            FOLLOW @HOUDINI.FIGHTMEDIA
           </a>
         </div>
       </div>
