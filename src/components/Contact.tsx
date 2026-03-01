@@ -119,9 +119,19 @@ const Contact = () => {
           <img src={logo} alt="Houdini Fightmedia" className="h-16 w-16 rounded-full object-cover" />
           <span className="font-display text-sm tracking-wider text-muted-foreground">HOUDINI FIGHTMEDIA</span>
         </div>
-        <p className="text-muted-foreground font-body text-xs">
-          © {new Date().getFullYear()} Houdini Fightmedia. All rights reserved.
-        </p>
+        <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+          <p className="text-muted-foreground font-body text-xs">
+            © {new Date().getFullYear()} Houdini Fightmedia. All rights reserved.
+          </p>
+          <span className="hidden sm:block text-muted-foreground">•</span>
+          <a 
+            href="/Privacyverklaring_Houdini_Fightmedia.pdf" 
+            download
+            className="text-muted-foreground hover:text-foreground font-body text-xs transition-colors underline"
+          >
+            {t.contact.privacy}
+          </a>
+        </div>
       </div>
     </section>
   );

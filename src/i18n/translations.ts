@@ -79,6 +79,7 @@ export const translations = {
         success: "Message Sent! 🥊",
         successDesc: "We'll get back to you within 24 hours.",
       },
+      privacy: "Privacy Policy",
     },
     // Sticky button
     sticky: {
@@ -155,6 +156,7 @@ export const translations = {
         success: "Bericht verstuurd! 🥊",
         successDesc: "We nemen binnen 24 uur contact met je op.",
       },
+      privacy: "Privacyverklaring",
     },
     sticky: {
       bookNow: "BOEK NU",
