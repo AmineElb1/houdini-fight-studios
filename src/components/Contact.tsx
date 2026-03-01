@@ -25,10 +25,10 @@ const Contact = () => {
             className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors font-body"
           >
             <Mail className="w-5 h-5 text-primary" />
-            info@houdinifightmedia.com
+            houdini.fightmedia@gmail.com
           </a>
           <a
-            href="https://wa.me/31600000000"
+            href="https://wa.me/0032456024771"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors font-body"
