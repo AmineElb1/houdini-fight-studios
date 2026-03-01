@@ -71,6 +71,14 @@ export const translations = {
     contact: {
       title: "GET IN TOUCH",
       subtitle: "Let's create something legendary",
+      form: {
+        name: "Full Name *",
+        email: "Email Address *",
+        message: "Your message...",
+        send: "SEND MESSAGE",
+        success: "Message Sent! 🥊",
+        successDesc: "We'll get back to you within 24 hours.",
+      },
     },
     // Sticky button
     sticky: {
@@ -138,7 +146,15 @@ export const translations = {
     },
     contact: {
       title: "NEEM CONTACT OP",
-      subtitle: "Laten we iets legendarisch creëren",
+      subtitle: "Laten we iets legendarisch maken",
+      form: {
+        name: "Volledige naam *",
+        email: "E-mailadres *",
+        message: "Jouw bericht...",
+        send: "VERSTUUR BERICHT",
+        success: "Bericht verstuurd! 🥊",
+        successDesc: "We nemen binnen 24 uur contact met je op.",
+      },
     },
     sticky: {
       bookNow: "BOEK NU",

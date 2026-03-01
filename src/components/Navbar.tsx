@@ -29,7 +29,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#" className="flex items-center gap-3">
-          <img src={logo} alt="Houdini Fightmedia" className="h-10 w-auto" />
+          <img src={logo} alt="Houdini Fightmedia" className="h-12 w-12 rounded-full object-cover" />
           <span className="font-display text-xl tracking-wider text-foreground hidden sm:block">
             HOUDINI
           </span>
