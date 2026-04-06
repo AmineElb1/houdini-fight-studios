@@ -15,31 +15,12 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch("https://formspree.io/f/mgolblkq", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        toast({
-          title: t.contact.form.success,
-          description: t.contact.form.successDesc,
-        });
-        setFormData({ name: "", email: "", message: "" });
-      }
-    } catch (error) {
-      console.error("Form submission error:", error);
-    } finally {
-      setIsSubmitting(false);
-    }
+    toast({
+      title: "Placeholder",
+      description: "Dit formulier is nog niet actief.",
+    });
   };
 
   const inputClass =

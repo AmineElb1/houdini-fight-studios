@@ -23,13 +23,9 @@ const CalendlySection = () => {
           <p className="mt-4 text-muted-foreground font-body">{t.calendly.subtitle}</p>
         </div>
 
-        <div className={`${visible ? "animate-fade-up-delay-1" : "opacity-0"}`}>
-          <iframe
-            src="https://calendly.com/houdini-fightmedia?hide_gdpr_banner=1&background_color=0d0d0d&text_color=ffffff&primary_color=e10600"
-            className="w-full rounded overflow-hidden border border-border"
-            style={{ minWidth: "320px", height: "700px", border: "none" }}
-            title="Schedule a shoot with Houdini Fightmedia"
-          />
+        <div className={`${visible ? "animate-fade-up-delay-1" : "opacity-0"} bg-secondary border border-border rounded p-12 text-center`}>
+          <p className="text-muted-foreground font-body text-lg mb-4">{t.calendly.subtitle}</p>
+          <p className="text-muted-foreground/60 font-body text-sm">Coming soon — Calendly integration</p>
         </div>
       </div>
     </section>
