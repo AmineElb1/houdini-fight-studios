@@ -17,10 +17,6 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Placeholder",
-      description: "Dit formulier is nog niet actief.",
-    });
   };
 
   const inputClass =
