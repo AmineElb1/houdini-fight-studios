@@ -75,20 +75,6 @@ const Contact = () => {
           </form>
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-8">
-          <a href="https://www.instagram.com/houdini.fightmedia/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors font-body">
-            <Instagram className="w-5 h-5 text-primary" />
-            @houdini.fightmedia
-          </a>
-          <a href="mailto:houdini.fightmedia@gmail.com" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors font-body">
-            <Mail className="w-5 h-5 text-primary" />
-            houdini.fightmedia@gmail.com
-          </a>
-          <a href="https://wa.me/0032456024771" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors font-body">
-            <MessageCircle className="w-5 h-5 text-primary" />
-            WhatsApp
-          </a>
-        </div>
       </div>
 
       <div className="max-w-7xl mx-auto mt-24 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
